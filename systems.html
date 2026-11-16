@@ -145,7 +145,7 @@
       <h3 class="tt">Score up to five options before you commit</h3>
       <p>Each criterion gets a weight from 1 to 5 for how much it matters. Each option is scored from 1 to 5 on every criterion. The matrix multiplies, adds up and ranks the options. Then it stress tests the answer by moving every weight up and down one step, and by dropping each criterion in turn, to see whether the leader holds.</p>
       <div class="dm" id="dm">
-        <p class="dm-note">Example: where to put a new promo page</p>
+        <p class="dm-note">Example scores. The labels are generic so the method fits any decision.</p>
         <div class="dm-scroll"><table class="dm-table" id="dm-table"><caption class="sr">Weighted decision matrix, example</caption></table></div>
         <div class="dm-out" id="dm-out"></div>
         <p class="dm-legend">Weight: 1 nice to have, 2 minor, 3 important, 4 major, 5 must have. Score: 1 poor, 2 weak, 3 okay, 4 good, 5 excellent. A score of 1 on a must-have is flagged.</p>
@@ -238,13 +238,13 @@
   /* ---------- decision matrix (read-only example) ---------- */
   var W={1:"Nice to have",2:"Minor",3:"Important",4:"Major",5:"Must have"};
   var S={1:"Poor",2:"Weak",3:"Okay",4:"Good",5:"Excellent"};
-  var OPT=["Custom site","Funnel builder","Link in bio page","Marketplace listing","Email only"];
+  var OPT=["Option 1","Option 2","Option 3","Option 4","Option 5"];
   var CRI=[
-    {n:"Owner can edit it",w:5,s:[4,3,5,2,4]},
-    {n:"Cost to run",w:4,s:[5,2,4,3,3]},
-    {n:"Control of design",w:3,s:[5,3,1,1,2]},
-    {n:"Speed to launch",w:3,s:[2,5,5,4,3]},
-    {n:"Tracks leads",w:4,s:[3,5,2,3,4]}
+    {n:"Criterion 1",w:5,s:[4,3,5,2,4]},
+    {n:"Criterion 2",w:4,s:[5,2,4,3,3]},
+    {n:"Criterion 3",w:3,s:[5,3,1,1,2]},
+    {n:"Criterion 4",w:3,s:[2,5,5,4,3]},
+    {n:"Criterion 5",w:4,s:[3,5,2,3,4]}
   ];
   var table=document.getElementById("dm-table"),out=document.getElementById("dm-out");
   if(table){
