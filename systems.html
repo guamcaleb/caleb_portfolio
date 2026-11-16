@@ -140,23 +140,15 @@
       <a class="btn ink" href="#skill">Skill template</a>
     </div>
 
-    <article class="tool" id="matrix">
+    <article class="tool nocopy" id="matrix">
       <p class="tag">Decision matrix</p>
       <h3 class="tt">Score up to five options before you commit</h3>
-      <p>Give each criterion a weight from 1 to 5 for how much it matters. Score each option from 1 to 5 on that criterion. The matrix multiplies, adds up and ranks the options. Then it stress tests the answer by moving every weight up and down one step, and by dropping each criterion in turn, to see whether the leader holds.</p>
+      <p>Each criterion gets a weight from 1 to 5 for how much it matters. Each option is scored from 1 to 5 on every criterion. The matrix multiplies, adds up and ranks the options. Then it stress tests the answer by moving every weight up and down one step, and by dropping each criterion in turn, to see whether the leader holds.</p>
       <div class="dm" id="dm">
-        <div class="dm-bar">
-          <p class="dm-note" id="dm-note">Example: where to put a new promo page. Edit anything.</p>
-          <div class="dm-actions">
-            <button type="button" class="mini" id="dm-addo">Add option</button>
-            <button type="button" class="mini" id="dm-addc">Add criterion</button>
-            <button type="button" class="mini ghost" id="dm-clear">Clear scores</button>
-            <button type="button" class="mini ghost" id="dm-reset">Reset example</button>
-          </div>
-        </div>
-        <div class="dm-scroll"><table class="dm-table" id="dm-table"><caption class="sr">Weighted decision matrix</caption></table></div>
+        <p class="dm-note">Example: where to put a new promo page</p>
+        <div class="dm-scroll"><table class="dm-table" id="dm-table"><caption class="sr">Weighted decision matrix, example</caption></table></div>
         <div class="dm-out" id="dm-out"></div>
-        <p class="dm-legend">Weight: 1 nice to have, 2 minor, 3 important, 4 major, 5 must have. Score: 1 poor, 2 weak, 3 okay, 4 good, 5 excellent. A score of 1 on a must-have is flagged. Nothing here is saved or sent.</p>
+        <p class="dm-legend">Weight: 1 nice to have, 2 minor, 3 important, 4 major, 5 must have. Score: 1 poor, 2 weak, 3 okay, 4 good, 5 excellent. A score of 1 on a must-have is flagged.</p>
         <noscript><p class="dm-legend">The matrix needs JavaScript turned on.</p></noscript>
       </div>
     </article>
@@ -175,11 +167,8 @@
             <li><span class="n">4</span><div><h3>Check every draft against it</h3><p>When a draft misses, the correction goes back into the guide so the same miss does not repeat.</p></div></li>
           </ol>
         </div>
-        <div>
-          <div class="tool-actions">
-            <button type="button" class="mini" id="sv-copy">Copy all 42 questions</button>
-            <button type="button" class="mini ghost" id="sv-dl">Download as Markdown</button>
-          </div>
+        <div class="nocopy">
+          <p class="count">42 questions in 9 sections</p>
           <div class="survey" id="survey">
           <details open><summary><span>The basics</span><span class="ct">4 questions</span></summary><ol style="counter-reset:q 0"><li><div><b>What is the business called, and what does it sell?</b><small>Answer in one sentence a stranger would understand.</small></div></li><li><div><b>What is the tagline, if there is one?</b><small>If there is none, finish this sentence: after one visit, people say we are ____.</small></div></li><li><div><b>Why does the business exist?</b><small>Describe the problem you saw that made you start.</small></div></li><li><div><b>Who is the face of the brand?</b><small>The owner, the coaches, a character, or no one.</small></div></li></ol></details>
           <details><summary><span>Your customer</span><span class="ct">5 questions</span></summary><ol style="counter-reset:q 4"><li><div><b>Describe your best customer in three sentences.</b><small>What they are trying to do matters more than their age.</small></div></li><li><div><b>What do they worry about before they buy?</b></div></li><li><div><b>How do they describe you to a friend?</b><small>Use their words, not yours. Reviews and DMs are a good source.</small></div></li><li><div><b>Where do they find you?</b><small>List every place, in order of how often it happens.</small></div></li><li><div><b>Who is not a fit?</b><small>Describe the customer you would turn away.</small></div></li></ol></details>
@@ -200,7 +189,8 @@
         <div>
           <p class="tag">Skill build template</p>
           <h3 class="tt">A starting point for every new skill</h3>
-          <p>New hires should not start from a blank page. This template gives each Claude skill the same structure: when it runs, what it needs, the steps, the finished format, the brand guardrails and the checks before anything is sent. The owner reviews the same sections every time.</p>
+          <p>New hires should not start from a blank page. The template gives each Claude skill the same structure: when it runs, what it needs, the steps, the finished format, the brand guardrails and the checks before anything is sent. The owner reviews the same sections every time.</p>
+          <p>The full file stays private. This is its outline.</p>
           <ol class="flow">
             <li><span class="n">1</span><div><h3>Pick one repeat task</h3><p>Choose something done every week that has a clear finished result.</p></div></li>
             <li><span class="n">2</span><div><h3>Collect real examples</h3><p>Gather three approved results and one that missed, so the skill can tell the difference.</p></div></li>
@@ -209,77 +199,18 @@
             <li><span class="n">5</span><div><h3>Review and log the version</h3><p>The owner signs off, fixes the misses and records the version at the bottom of the file.</p></div></li>
           </ol>
         </div>
-        <div>
-          <div class="tool-actions">
-            <button type="button" class="mini" id="sk-copy">Copy template</button>
-            <button type="button" class="mini ghost" id="sk-dl">Download SKILL.md</button>
-          </div>
-          <pre class="code" id="skill-tpl" tabindex="0" aria-label="SKILL.md template">---
-name: [short-name-in-lowercase-with-hyphens]
-description: [One or two sentences. Say what the skill does and when to use it. Include the words a teammate would actually type, such as &quot;write a caption for the new class&quot; or &quot;build this week&#x27;s coach schedule&quot;.]
----
-
-# [Skill title]
-
-## Purpose
-[One paragraph. Say what this skill produces and who uses it. Name the finished thing, for example &quot;a ready-to-post Instagram caption&quot;.]
-
-## Use this skill when
-- [A request that should trigger it.]
-- [Another request that should trigger it.]
-- [A near miss that should NOT trigger it, and who or what handles it instead.]
-
-## Gather before starting
-Ask for anything missing from this list. Do not guess.
-1. [Input one, for example the offer name and dates.]
-2. [Input two, for example the audience.]
-3. [Input three, for example the action you want people to take.]
-
-## Steps
-1. [First action. Start with a verb.]
-2. [Second action.]
-3. [Third action.]
-4. [Check the draft against the quality checks below.]
-5. [Deliver the result in the output format below.]
-
-## Output format
-[Describe the exact shape: file type, length, headings, tone and where it goes.]
-
-### Example of a finished result
-[Paste one real, approved example here.]
-
-## Voice and guardrails
-- Follow the brand guide: [file name or link].
-- Words to use: [list]
-- Words to avoid: [list]
-- Never mention: [list]
-- Claims that need a source before they appear: [list]
-
-## Quality checks
-Before sending, confirm each of these:
-- [ ] Every fact and number matches [source of truth].
-- [ ] The call to action is one of: [approved list].
-- [ ] The voice matches the example above.
-- [ ] Nothing from the &quot;never mention&quot; list appears.
-- [ ] Someone outside the team could follow it without help.
-
-## When to stop and ask
-Stop and ask [owner name] if:
-- [The request touches pricing, contracts or legal wording.]
-- [An input is missing and no default is listed.]
-- [The result would reach a customer without review.]
-
-## Owner and version log
-Owner: [name]
-Last reviewed: [date]
-- v1 [date]: first version, tested with [number] sample requests.
-</pre>
+        <div class="nocopy">
+          <p class="count">SKILL.md, section by section</p>
+          <ol class="outline"><li><b>Front matter</b><span>A short name and a one-line description that says when the skill runs.</span></li><li><b>Purpose</b><span>What the skill produces and who uses it.</span></li><li><b>Use this skill when</b><span>The requests that trigger it, plus a near miss that should go elsewhere.</span></li><li><b>Gather before starting</b><span>The inputs to ask for. Nothing is guessed.</span></li><li><b>Steps</b><span>Numbered actions, each starting with a verb.</span></li><li><b>Output format</b><span>The exact shape of the finished result, with one approved example.</span></li><li><b>Voice and guardrails</b><span>A link to the brand guide, words to use and avoid, claims that need a source.</span></li><li><b>Quality checks</b><span>A checklist the draft passes before anything is sent.</span></li><li><b>When to stop and ask</b><span>The cases that go to the owner instead of being decided alone.</span></li><li><b>Owner and version log</b><span>Who owns it, when it was last reviewed and what changed.</span></li></ol>
         </div>
       </div>
     </article>
 
     <div class="cards one">
-      <div class="card"><h3>Cleaning up redundancy</h3><p>Using AI to find duplicate steps and files, and what changed afterward.</p><span class="ph">Placeholder: needs your notes</span></div>
+      <div class="card done">
+        <h3>Cleaning up redundancy</h3>
+        <p>Duplicate steps and one-off files pile up when the same job gets done a slightly different way each time. I clear them out with skill builds. The job is written down once as a Claude skill, with its inputs, steps and checks, and every later request follows that one version.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -301,184 +232,81 @@ Last reviewed: [date]
 <script>
 (function(){
   "use strict";
-  function el(tag,attrs,text){var n=document.createElement(tag);if(attrs){for(var k in attrs){if(k==="value")n.value=attrs[k];else n.setAttribute(k,attrs[k]);}}if(text!=null)n.textContent=text;return n;}
-  function clone(o){return JSON.parse(JSON.stringify(o));}
+  function el(tag,attrs,text){var n=document.createElement(tag);if(attrs){for(var k in attrs){n.setAttribute(k,attrs[k]);}}if(text!=null)n.textContent=text;return n;}
   function ord(n){return n===1?"1st":n===2?"2nd":n===3?"3rd":n+"th";}
-  function copyText(t,btn){
-    var label=btn.textContent;
-    function done(ok){btn.textContent=ok?"Copied":"Copy failed";setTimeout(function(){btn.textContent=label;},1600);}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done(true);},function(){fallback();});}else{fallback();}
-    function fallback(){var a=el("textarea");a.value=t;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy");}catch(e){}a.remove();done(ok);}
-  }
-  function download(name,text){
-    var b=new Blob([text],{type:"text/markdown;charset=utf-8"});var a=el("a",{href:URL.createObjectURL(b),download:name});
-    document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
-  }
 
-  /* ---------- decision matrix ---------- */
+  /* ---------- decision matrix (read-only example) ---------- */
   var W={1:"Nice to have",2:"Minor",3:"Important",4:"Major",5:"Must have"};
   var S={1:"Poor",2:"Weak",3:"Okay",4:"Good",5:"Excellent"};
-  var EX={options:["Custom site","Funnel builder","Link in bio page"],criteria:[
-    {n:"Owner can edit it",w:5,s:[4,3,5]},
-    {n:"Cost to run",w:4,s:[5,2,4]},
-    {n:"Control of design",w:3,s:[5,3,1]},
-    {n:"Speed to launch",w:3,s:[2,5,5]},
-    {n:"Tracks leads",w:4,s:[3,5,2]}]};
-  var MAXO=5,MINO=2,MAXC=8,MINC=2;
-  var st=clone(EX),refs={},touched=false;
-  var table=document.getElementById("dm-table"),out=document.getElementById("dm-out"),note=document.getElementById("dm-note");
-  var bAddO=document.getElementById("dm-addo"),bAddC=document.getElementById("dm-addc");
-  if(!table)return;
-
-  function oName(j){return (st.options[j]||"").trim()||("Option "+(j+1));}
-  function cName(i){return (st.criteria[i].n||"").trim()||("Criterion "+(i+1));}
-  function touch(){if(!touched){touched=true;note.textContent="Your numbers stay in this tab. Close it and they are gone.";}}
-  function totals(w){return st.options.map(function(_,j){var t=0;st.criteria.forEach(function(c,i){t+=w[i]*c.s[j];});return t;});}
-  function leaders(tt){var m=Math.max.apply(null,tt),idx=[];tt.forEach(function(v,i){if(v===m)idx.push(i);});return {max:m,idx:idx};}
-
-  function stress(base){
-    if(base.max===0||base.idx.length!==1)return null;
-    var lead=base.idx[0],N=st.criteria.length,w=st.criteria.map(function(c){return c.w;}),sc=[];
-    for(var i=0;i<N;i++){
-      [-1,1].forEach(function(d){var nw=w[i]+d;if(nw<1||nw>5)return;var ww=w.slice();ww[i]=nw;sc.push({w:ww,d:"the weight of “"+cName(i)+"” goes "+(d>0?"up":"down")+" one step"});});
-      if(N>2){var z=w.slice();z[i]=0;sc.push({w:z,d:"“"+cName(i)+"” is dropped"});}
-    }
-    var holds=0,flips=[];
-    sc.forEach(function(s){var r=leaders(totals(s.w));
-      if(r.idx.length===1&&r.idx[0]===lead)holds++;
-      else flips.push("If "+s.d+", "+(r.max===0?"no scores remain.":r.idx.length===1?oName(r.idx[0])+" takes the lead.":"it becomes a tie."));});
-    return {total:sc.length,holds:holds,flips:flips};
-  }
-
-  function update(){
-    var w=st.criteria.map(function(c){return c.w;}),tt=totals(w),maxPts=w.reduce(function(a,b){return a+b;},0)*5,base=leaders(tt);
+  var OPT=["Custom site","Funnel builder","Link in bio page","Marketplace listing","Email only"];
+  var CRI=[
+    {n:"Owner can edit it",w:5,s:[4,3,5,2,4]},
+    {n:"Cost to run",w:4,s:[5,2,4,3,3]},
+    {n:"Control of design",w:3,s:[5,3,1,1,2]},
+    {n:"Speed to launch",w:3,s:[2,5,5,4,3]},
+    {n:"Tracks leads",w:4,s:[3,5,2,3,4]}
+  ];
+  var table=document.getElementById("dm-table"),out=document.getElementById("dm-out");
+  if(table){
+    function totals(w){return OPT.map(function(_,j){var t=0;CRI.forEach(function(c,i){t+=w[i]*c.s[j];});return t;});}
+    function leaders(tt){var m=Math.max.apply(null,tt),idx=[];tt.forEach(function(v,i){if(v===m)idx.push(i);});return {max:m,idx:idx};}
+    var w=CRI.map(function(c){return c.w;}),tt=totals(w),maxPts=w.reduce(function(a,b){return a+b;},0)*5,base=leaders(tt);
     var order=tt.map(function(v,i){return {v:v,i:i};}).sort(function(a,b){return b.v-a.v;}),rank=[];
     order.forEach(function(o,k){rank[o.i]=(k>0&&order[k-1].v===o.v)?rank[order[k-1].i]:k+1;});
-    tt.forEach(function(v,j){
-      var r=refs.res[j],pct=maxPts?Math.round(v/maxPts*100):0,isLead=v>0&&v===base.max;
-      r.tot.textContent=v;r.pct.textContent=pct+"% of "+maxPts;r.bar.style.width=pct+"%";
-      r.rk.textContent=v>0?ord(rank[j]):"";
-      r.td.classList.toggle("lead",isLead);refs.head[j].classList.toggle("lead",isLead);
-      var fails=[];st.criteria.forEach(function(c,i){if(c.w===5&&c.s[j]===1)fails.push(cName(i));});
-      r.fl.textContent=fails.length?"Fails a must-have: "+fails.join(", "):"";
-    });
-    table.querySelectorAll("[data-o]").forEach(function(n){n.setAttribute("data-label",oName(+n.getAttribute("data-o")));});
-    /* summary */
-    out.textContent="";
-    var a=el("div"),b=el("div",{"class":"stress"});
-    a.appendChild(el("div",{"class":"k"},"Result"));
-    if(base.max===0){
-      a.appendChild(el("div",{"class":"v"},"No scores yet"));a.appendChild(el("p",null,"Pick a score from 1 to 5 for each option."));
-    }else if(base.idx.length>1){
-      a.appendChild(el("div",{"class":"v"},"Tie: "+base.idx.map(oName).join(" and ")));
-      a.appendChild(el("p",null,"Add a criterion that separates them, or check whether the weights say what you mean."));
-    }else{
-      var second=order[1].v,lead=base.idx[0];
-      a.appendChild(el("div",{"class":"v"},oName(lead)));
-      a.appendChild(el("p",null,Math.round(base.max/maxPts*100)+"% of the maximum. Leads "+oName(order[1].i)+" by "+(base.max-second)+" point"+((base.max-second)===1?"":"s")+"."));
-    }
-    b.appendChild(el("div",{"class":"k"},"Stress test"));
-    var s=stress(base);
-    if(!s){
-      b.appendChild(el("div",{"class":"v"},"Waiting"));b.appendChild(el("p",null,"The stress test runs once one option is clearly ahead."));
-    }else{
-      var ratio=s.holds/s.total,verdict=s.holds===s.total?"Holds":ratio>=0.75?"Mostly holds":"Fragile";
-      b.appendChild(el("div",{"class":"v"},verdict));
-      b.appendChild(el("p",null,"The leader stays on top in "+s.holds+" of "+s.total+" scenarios. Each scenario moves one weight a step or drops one criterion."));
-      if(s.flips.length){var ul=el("ul");s.flips.slice(0,3).forEach(function(f){ul.appendChild(el("li",null,f));});b.appendChild(ul);
-        if(s.flips.length>3)b.appendChild(el("p",{"class":"more"},"And "+(s.flips.length-3)+" more."));}
-    }
-    out.appendChild(a);out.appendChild(b);
-  }
 
-  function render(focusId){
-    table.textContent="";
-    table.appendChild(el("caption",{"class":"sr"},"Weighted decision matrix"));
-    refs={head:[],res:[]};
     var thead=el("thead"),tr=el("tr");
-    tr.appendChild(el("th",{scope:"col","class":"c1"},"Criterion"));
-    tr.appendChild(el("th",{scope:"col","class":"cw"},"Weight"));
-    st.options.forEach(function(o,j){
-      var th=el("th",{scope:"col"}),box=el("div",{"class":"oh"});
-      var inp=el("input",{type:"text",value:o,maxlength:"28","aria-label":"Option "+(j+1)+" name",id:"o"+j,placeholder:"Option "+(j+1)});
-      inp.addEventListener("input",function(){st.options[j]=inp.value;touch();update();});
-      box.appendChild(inp);
-      if(st.options.length>MINO){var x=el("button",{type:"button","class":"x","aria-label":"Remove option "+(j+1)},"×");x.addEventListener("click",function(){st.options.splice(j,1);st.criteria.forEach(function(c){c.s.splice(j,1);});touch();render("dm-addo");});box.appendChild(x);}
-      th.appendChild(box);tr.appendChild(th);refs.head[j]=th;
-    });
-    tr.appendChild(el("th",{"class":"xc"},""));
+    tr.appendChild(el("th",{scope:"col","class":"c1"},"Criterion"));tr.appendChild(el("th",{scope:"col","class":"cw"},"Weight"));
+    OPT.forEach(function(o,j){tr.appendChild(el("th",{scope:"col","class":(tt[j]===base.max?"lead ":"")+"ot"},o));});
     thead.appendChild(tr);table.appendChild(thead);
 
     var tb=el("tbody");
-    st.criteria.forEach(function(c,i){
-      var r=el("tr");
-      var td=el("td",{"class":"c1"});
-      var ci=el("input",{type:"text",value:c.n,maxlength:"40","aria-label":"Criterion "+(i+1)+" name",id:"c"+i,placeholder:"Criterion "+(i+1)});
-      ci.addEventListener("input",function(){c.n=ci.value;touch();update();});
-      td.appendChild(ci);r.appendChild(td);
-      var tw=el("td",{"class":"cw"}),sw=el("select",{"aria-label":"Weight, criterion "+(i+1)});
-      for(var n=1;n<=5;n++){var op=el("option",{value:n},n+" "+W[n]);if(n===c.w)op.selected=true;sw.appendChild(op);}
-      sw.addEventListener("change",function(){c.w=+sw.value;touch();update();});
-      tw.appendChild(sw);r.appendChild(tw);
-      st.options.forEach(function(_,j){
-        var ts=el("td",{"data-o":j}),se=el("select",{"aria-label":"Score, option "+(j+1)+", criterion "+(i+1)});
-        var o0=el("option",{value:0},"–");if(c.s[j]===0)o0.selected=true;se.appendChild(o0);
-        for(var n=1;n<=5;n++){var op=el("option",{value:n},n+" "+S[n]);if(n===c.s[j])op.selected=true;se.appendChild(op);}
-        se.addEventListener("change",function(){c.s[j]=+se.value;touch();update();});
-        ts.appendChild(se);r.appendChild(ts);
-      });
-      var tx=el("td",{"class":"xc"});
-      if(st.criteria.length>MINC){var x=el("button",{type:"button","class":"x","aria-label":"Remove criterion "+(i+1)},"×");x.addEventListener("click",function(){st.criteria.splice(i,1);touch();render("dm-addc");});tx.appendChild(x);}
-      r.appendChild(tx);tb.appendChild(r);
+    CRI.forEach(function(c){
+      var r=el("tr");r.appendChild(el("td",{"class":"c1"},c.n));r.appendChild(el("td",{"class":"cw"},c.w+" "+W[c.w]));
+      c.s.forEach(function(s,j){var td=el("td",{"data-label":OPT[j]});td.appendChild(el("span",{"class":"pill s"+s},s+" "+S[s]));r.appendChild(td);});
+      tb.appendChild(r);
     });
     table.appendChild(tb);
 
-    var tf=el("tfoot"),fr=el("tr");
-    fr.appendChild(el("th",{scope:"row","class":"c1"},"Weighted score"));fr.appendChild(el("td",{"class":"cw"},""));
-    st.options.forEach(function(_,j){
-      var td=el("td",{"class":"res","data-o":j}),tot=el("div",{"class":"tot"}),pct=el("div",{"class":"pct"}),bw=el("div",{"class":"bar"}),bar=el("i"),rk=el("div",{"class":"rk"}),fl=el("div",{"class":"fl"});
-      bw.appendChild(bar);[tot,pct,bw,rk,fl].forEach(function(n){td.appendChild(n);});fr.appendChild(td);
-      refs.res[j]={td:td,tot:tot,pct:pct,bar:bar,rk:rk,fl:fl};
+    var tf=el("tfoot"),fr=el("tr");fr.appendChild(el("th",{scope:"row","class":"c1"},"Weighted score"));fr.appendChild(el("td",{"class":"cw"},""));
+    tt.forEach(function(v,j){
+      var td=el("td",{"class":"res"+(v===base.max?" lead":""),"data-label":OPT[j]}),pct=Math.round(v/maxPts*100);
+      td.appendChild(el("div",{"class":"tot"},String(v)));td.appendChild(el("div",{"class":"pct"},pct+"% of "+maxPts));
+      var bw=el("div",{"class":"bar"}),bar=el("i");bar.style.width=pct+"%";bw.appendChild(bar);td.appendChild(bw);
+      td.appendChild(el("div",{"class":"rk"},ord(rank[j])));
+      var fails=[];CRI.forEach(function(c){if(c.w===5&&c.s[j]===1)fails.push(c.n);});
+      if(fails.length)td.appendChild(el("div",{"class":"fl"},"Fails a must-have: "+fails.join(", ")));
+      fr.appendChild(td);
     });
-    fr.appendChild(el("td",{"class":"xc"},""));
     tf.appendChild(fr);table.appendChild(tf);
 
-    bAddO.disabled=st.options.length>=MAXO;bAddC.disabled=st.criteria.length>=MAXC;
-    update();
-    if(focusId){var f=document.getElementById(focusId);if(f&&!f.disabled)f.focus();}
-  }
-
-  bAddO.addEventListener("click",function(){if(st.options.length>=MAXO)return;var n=st.options.length;st.options.push("");st.criteria.forEach(function(c){c.s.push(0);});touch();render("o"+n);});
-  bAddC.addEventListener("click",function(){if(st.criteria.length>=MAXC)return;var n=st.criteria.length;st.criteria.push({n:"",w:3,s:st.options.map(function(){return 0;})});touch();render("c"+n);});
-  document.getElementById("dm-clear").addEventListener("click",function(){st.criteria.forEach(function(c){c.s=c.s.map(function(){return 0;});});touch();render();});
-  document.getElementById("dm-reset").addEventListener("click",function(){st=clone(EX);touched=false;note.textContent="Example: where to put a new promo page. Edit anything.";render();});
-  render();
-
-  /* ---------- brand survey ---------- */
-  var sv=document.getElementById("survey");
-  function surveyText(){
-    var t="# Brand guide survey\n\nAnswer in your own words. Write \"not sure\" where that is true. Paste real examples wherever a question asks for them.\n";
-    sv.querySelectorAll("details").forEach(function(d){
-      t+="\n## "+d.querySelector("summary span").textContent+"\n\n";
-      var n=parseInt(d.querySelector("ol").style.counterReset.replace(/[^0-9]/g,""),10)||0;
-      d.querySelectorAll("li").forEach(function(li){n++;
-        t+=n+". "+li.querySelector("b").textContent+"\n";
-        var sm=li.querySelector("small");if(sm)t+="   "+sm.textContent+"\n";
-        t+="   Answer:\n\n";});
+    /* summary and stress test */
+    var a=el("div"),b=el("div",{"class":"stress"});
+    a.appendChild(el("div",{"class":"k"},"Result"));
+    var gap=base.max-order[1].v;
+    a.appendChild(el("div",{"class":"v"},OPT[base.idx[0]]));
+    a.appendChild(el("p",null,Math.round(base.max/maxPts*100)+"% of the maximum. Leads "+OPT[order[1].i]+" by "+gap+" point"+(gap===1?"":"s")+"."));
+    b.appendChild(el("div",{"class":"k"},"Stress test"));
+    var lead=base.idx[0],sc=[];
+    CRI.forEach(function(c,i){
+      [-1,1].forEach(function(d){var nw=w[i]+d;if(nw<1||nw>5)return;var ww=w.slice();ww[i]=nw;sc.push({w:ww,d:"the weight of “"+c.n+"” goes "+(d>0?"up":"down")+" one step"});});
+      var z=w.slice();z[i]=0;sc.push({w:z,d:"“"+c.n+"” is dropped"});
     });
-    return t;
-  }
-  if(sv){
-    document.getElementById("sv-copy").addEventListener("click",function(){copyText(surveyText(),this);});
-    document.getElementById("sv-dl").addEventListener("click",function(){download("brand-guide-survey.md",surveyText());});
+    var holds=0,flips=[];
+    sc.forEach(function(s){var r=leaders(totals(s.w));
+      if(r.idx.length===1&&r.idx[0]===lead)holds++;
+      else flips.push("If "+s.d+", "+(r.idx.length===1?OPT[r.idx[0]]+" takes the lead.":"it becomes a tie."));});
+    var verdict=holds===sc.length?"Holds":(holds/sc.length>=0.75?"Mostly holds":"Fragile");
+    b.appendChild(el("div",{"class":"v"},verdict));
+    b.appendChild(el("p",null,"The leader stays on top in "+holds+" of "+sc.length+" scenarios. Each scenario moves one weight a step or drops one criterion."));
+    if(flips.length){var ul=el("ul");flips.slice(0,3).forEach(function(f){ul.appendChild(el("li",null,f));});b.appendChild(ul);
+      if(flips.length>3)b.appendChild(el("p",{"class":"more"},"And "+(flips.length-3)+" more."));}
+    out.appendChild(a);out.appendChild(b);
   }
 
-  /* ---------- skill template ---------- */
-  var tp=document.getElementById("skill-tpl");
-  if(tp){
-    document.getElementById("sk-copy").addEventListener("click",function(){copyText(tp.textContent,this);});
-    document.getElementById("sk-dl").addEventListener("click",function(){download("SKILL.md",tp.textContent);});
-  }
+  /* ---------- no copying, cutting, dragging or saving from protected blocks ---------- */
+  document.querySelectorAll(".nocopy").forEach(function(n){
+    ["copy","cut","contextmenu","dragstart","selectstart"].forEach(function(ev){n.addEventListener(ev,function(e){e.preventDefault();});});
+  });
 })();
 </script>
 
