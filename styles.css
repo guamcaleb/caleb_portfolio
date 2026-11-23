@@ -432,3 +432,6 @@ footer{background:var(--black);color:var(--grey);padding-top:22px;padding-bottom
 @media (max-width:560px){.shot img,.shot::after{clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%);}.shot figcaption{font-size:13px;padding:6px 16px 6px 10px;bottom:10px;}.shot::before{left:-6px;top:-6px;width:34px;height:34px;}}
 
 .shot.land img{aspect-ratio:4/3;object-fit:cover;}
+
+.shot.sq img{aspect-ratio:1/1;object-fit:cover;}
+.shot.pt img{object-position:50% 68%;}
