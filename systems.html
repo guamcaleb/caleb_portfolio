@@ -110,8 +110,9 @@
     <div>
       <p class="tag">Enrollment</p>
       <h2>Sign a member in person or from their phone</h2>
-      <p>Staff choose the enrollment type, fill in the membership details and lock them. The member then completes their own information, billing authorization and signatures on the front desk device or on their own phone.</p>
-      <p>Remote enrollments are encrypted. Only the owner can open one.</p>
+      <p>Payment gateways will not approve Guam-based businesses, citing liability risk, so card billing on autopilot was never an option. That left keying in card payments by hand or debiting bank accounts. I chose ACH to get as close to fully automated as the island allows.</p>
+      <p>I built online enrollment to improve speed to lead. A prospect can commit while they are still in the buying mindset: they fill out the form, sign the waivers and pay the enrollment fee from their phone, without waiting for a front desk visit.</p>
+      <p>Staff choose the enrollment type, fill in the membership details and lock them. The member then completes their own information, billing authorization and signatures on the front desk device or on their own phone. Banking details are encrypted, and only the owner's key can open them.</p>
     </div>
     <div>
       <div class="mock" role="img" aria-label="Illustration of the four enrollment types">
@@ -125,8 +126,11 @@
       </div>
       <ol class="flow" style="margin-top:28px">
         <li><span class="n">1</span><div><h3>Staff lock the plan</h3><p>The type and membership details are set before anything is sent.</p></div></li>
-        <li><span class="n">2</span><div><h3>The member finishes on their device</h3><p>A link by text or WhatsApp opens the rest of the form.</p></div></li>
-        <li><span class="n">3</span><div><h3>The owner opens the encrypted file</h3><p>The completed enrollment arrives by email and opens only with a private key.</p></div></li>
+        <li><span class="n">2</span><div><h3>The member finishes on their device</h3><p>A link by text or WhatsApp opens the form and waivers. When they finish, a preset PayPal link collects the enrollment fee.</p></div></li>
+        <li><span class="n">3</span><div><h3>Banking details are encrypted</h3><p>They go to the admin page, where only the owner's key can open them.</p></div></li>
+        <li><span class="n">4</span><div><h3>The owner loads the ACH file</h3><p>I decrypt each enrollment and add it to the gym's ACH portal at the bank.</p></div></li>
+        <li><span class="n">5</span><div><h3>One ACH batch runs each month</h3><p>Every member billed this way is charged in a single monthly batch.</p></div></li>
+        <li><span class="n">6</span><div><h3>Failed payments follow a set path</h3><p>Declines go to the onsite office for manual card entry with a $25 admin fee. If payments keep failing, the member moves into a reactivation workflow in Glofox.</p></div></li>
       </ol>
     </div>
   </section>
