@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro calculator | Caleb Barretto</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preload" href="fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0A0A0B">
+<script data-goatcounter="https://caleb-barretto.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>.mc-back{display:inline-block;margin:26px 0 0;font-family:var(--cond);font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--hot-text);text-decoration:none;}.mc-back:hover{color:var(--chalk);}.mc-note{margin:0;padding:22px 0 56px;font-size:15px;line-height:1.5;color:#B8B8B2;max-width:46em;}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="mark" href="index.html" aria-label="Caleb Barretto, home"><span class="mk"><img src="images/caleb-mark.jpg" width="52" height="52" alt=""></span><span>Caleb Barretto</span></a>
+    <nav aria-label="Main">
+      <a href="story.html">Story</a>
+      <a href="systems.html" aria-current="page">Systems</a>
+      <a href="story.html#resume">Resume</a>
+      <a class="btn" href="mailto:caleb@unifiedguam.com" data-goatcounter-click="email-click">Contact</a>
+    </nav>
+  </header>
+  <a class="mc-back" href="systems.html#coach-tools">Back to Systems</a>
+</div>
+<main>
+<section class="ufmc" id="macro-calculator" aria-labelledby="ufmc-title">
+<style>
+  .ufmc {
+    --ufmc-black: #1F1E1E;
+    --ufmc-panel: #2A2929;
+    --ufmc-line: #3A3939;
+    --ufmc-white: #EFEFEE;
+    --ufmc-muted: #A9A9A7;
+    --ufmc-mint: #67BEA7;
+    --ufmc-cta: #0AF2C2;
+    font-family: 'Barlow', system-ui, sans-serif;
+    color: var(--ufmc-white);
+    background: var(--ufmc-black);
+    padding: 48px 16px;
+    box-sizing: border-box;
+  }
+  .ufmc *, .ufmc *::before, .ufmc *::after { box-sizing: border-box; }
+  .ufmc-wrap { max-width: 960px; margin: 0 auto; }
+  .ufmc-eyebrow { color: var(--ufmc-mint); font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 8px; }
+  .ufmc h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(32px, 6vw, 48px); line-height: 1.05; text-transform: uppercase; margin: 0 0 12px; }
+  .ufmc-lede { color: var(--ufmc-muted); font-size: 16px; line-height: 1.55; max-width: 560px; margin: 0 0 32px; }
+  .ufmc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 760px) { .ufmc-grid { grid-template-columns: 1fr; } }
+  .ufmc-card { background: var(--ufmc-panel); border: 1px solid var(--ufmc-line); border-radius: 12px; padding: 24px; }
+  .ufmc-field { margin-bottom: 18px; }
+  .ufmc-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ufmc-muted); margin-bottom: 8px; }
+  .ufmc-row { display: flex; gap: 10px; }
+  .ufmc-row > * { flex: 1; min-width: 0; }
+  .ufmc input[type=number], .ufmc select {
+    width: 100%; background: var(--ufmc-black); color: var(--ufmc-white);
+    border: 1px solid var(--ufmc-line); border-radius: 8px; padding: 12px;
+    font: 500 16px 'Barlow', sans-serif; appearance: none; -webkit-appearance: none;
+  }
+  .ufmc select { background-image: linear-gradient(45deg, transparent 50%, var(--ufmc-mint) 50%), linear-gradient(135deg, var(--ufmc-mint) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 32px; }
+  .ufmc input:focus, .ufmc select:focus { outline: 2px solid var(--ufmc-mint); outline-offset: 1px; }
+  .ufmc-unit { position: relative; }
+  .ufmc-unit span { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--ufmc-muted); font-size: 13px; pointer-events: none; }
+  .ufmc-unit input { padding-right: 40px; }
+  .ufmc-seg { display: flex; border: 1px solid var(--ufmc-line); border-radius: 8px; overflow: hidden; }
+  .ufmc-seg button { flex: 1; background: transparent; color: var(--ufmc-muted); border: 0; padding: 11px 8px; font: 600 14px 'Barlow', sans-serif; cursor: pointer; }
+  .ufmc-seg button[aria-pressed=true] { background: var(--ufmc-mint); color: var(--ufmc-black); }
+  .ufmc-btn { width: 100%; background: var(--ufmc-cta); color: var(--ufmc-black); border: 0; border-radius: 8px; padding: 14px; font: 700 16px 'Barlow Condensed', sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+  .ufmc-btn:hover { filter: brightness(1.05); }
+  .ufmc-error { color: #F2A60A; font-size: 14px; margin: 12px 0 0; min-height: 1em; }
+  .ufmc-empty { color: var(--ufmc-muted); font-size: 15px; line-height: 1.55; }
+  .ufmc-kcal { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 56px; line-height: 1; margin: 4px 0 4px; }
+  .ufmc-kcal small { font-size: 18px; color: var(--ufmc-muted); font-weight: 600; margin-left: 6px; }
+  .ufmc-sub { color: var(--ufmc-muted); font-size: 14px; margin: 0 0 24px; }
+  .ufmc-macro { margin-bottom: 16px; }
+  .ufmc-macro-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .ufmc-macro-name { font-weight: 600; font-size: 15px; }
+  .ufmc-macro-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; }
+  .ufmc-macro-val span { font-family: 'Barlow', sans-serif; font-weight: 500; font-size: 13px; color: var(--ufmc-muted); margin-left: 6px; }
+  .ufmc-bar { height: 8px; background: var(--ufmc-black); border-radius: 4px; overflow: hidden; }
+  .ufmc-bar i { display: block; height: 100%; border-radius: 4px; transition: width .4s ease; }
+  .ufmc-note { border-top: 1px solid var(--ufmc-line); margin-top: 20px; padding-top: 16px; color: var(--ufmc-muted); font-size: 13px; line-height: 1.55; }
+  .ufmc-note strong { color: var(--ufmc-white); font-weight: 600; }
+  .ufmc [hidden] { display: none !important; }
+</style>
+
+<div class="ufmc-wrap">
+  <p class="ufmc-eyebrow">Nutrition</p>
+  <h2 id="ufmc-title">Fuel the training.</h2>
+  <p class="ufmc-lede">A starting point for daily calories and macros, built around how you train. Bring your numbers to a coach and we'll adjust from there.</p>
+
+  <div class="ufmc-grid">
+    <form class="ufmc-card" id="ufmc-form" novalidate>
+      <div class="ufmc-field">
+        <span class="ufmc-label">Units</span>
+        <div class="ufmc-seg" role="group" aria-label="Units">
+          <button type="button" data-units="imperial" aria-pressed="true">lb / ft</button>
+          <button type="button" data-units="metric" aria-pressed="false">kg / cm</button>
+        </div>
+      </div>
+
+      <div class="ufmc-field ufmc-row">
+        <div>
+          <label class="ufmc-label" for="ufmc-sex">Sex</label>
+          <select id="ufmc-sex">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+        <div>
+          <label class="ufmc-label" for="ufmc-age">Age</label>
+          <input type="number" id="ufmc-age" inputmode="numeric" min="16" max="90" placeholder="30">
+        </div>
+      </div>
+
+      <div class="ufmc-field">
+        <span class="ufmc-label">Height</span>
+        <div class="ufmc-row" data-show="imperial">
+          <div class="ufmc-unit"><input type="number" id="ufmc-ft" inputmode="numeric" min="4" max="7" placeholder="5" aria-label="Feet"><span>ft</span></div>
+          <div class="ufmc-unit"><input type="number" id="ufmc-in" inputmode="numeric" min="0" max="11" placeholder="8" aria-label="Inches"><span>in</span></div>
+        </div>
+        <div class="ufmc-unit" data-show="metric" hidden><input type="number" id="ufmc-cm" inputmode="numeric" min="120" max="230" placeholder="173" aria-label="Centimeters"><span>cm</span></div>
+      </div>
+
+      <div class="ufmc-field">
+        <label class="ufmc-label" for="ufmc-weight">Weight</label>
+        <div class="ufmc-unit"><input type="number" id="ufmc-weight" inputmode="decimal" placeholder="160"><span id="ufmc-wunit">lb</span></div>
+      </div>
+
+      <div class="ufmc-field">
+        <label class="ufmc-label" for="ufmc-activity">Daily life (outside training)</label>
+        <select id="ufmc-activity"></select>
+      </div>
+
+      <div class="ufmc-field">
+        <label class="ufmc-label" for="ufmc-type">Training type</label>
+        <select id="ufmc-type"></select>
+        <p class="ufmc-sub" id="ufmc-typenote" style="margin:6px 0 0;font-size:13px;"></p>
+      </div>
+
+      <div data-train>
+        <div class="ufmc-field">
+          <label class="ufmc-label" for="ufmc-sessions">Sessions per week</label>
+          <input type="number" id="ufmc-sessions" inputmode="numeric" min="1" max="14" placeholder="4" value="4">
+        </div>
+        <div class="ufmc-field">
+          <label class="ufmc-label" for="ufmc-minutes">Average session length (minutes)</label>
+          <input type="number" id="ufmc-minutes" inputmode="numeric" min="15" max="360" placeholder="60" value="60">
+        </div>
+        <div class="ufmc-field">
+          <label class="ufmc-label" for="ufmc-intensity">Average intensity: <b id="ufmc-intval">6</b> / 10</label>
+          <input type="range" id="ufmc-intensity" min="1" max="10" step="1" value="6" style="width:100%;">
+          <p class="ufmc-sub" id="ufmc-intnote" style="margin:6px 0 0;font-size:13px;"></p>
+        </div>
+      </div>
+
+      <div class="ufmc-field">
+        <label class="ufmc-label" for="ufmc-goal">Goal</label>
+        <select id="ufmc-goal"></select>
+      </div>
+
+      <button type="submit" class="ufmc-btn">Calculate</button>
+      <p class="ufmc-error" id="ufmc-error" role="alert"></p>
+    </form>
+
+    <div class="ufmc-card" aria-live="polite">
+      <div id="ufmc-empty" class="ufmc-empty">
+        <p class="ufmc-label">Your numbers</p>
+        <p>Fill in your details and hit calculate. Nothing you enter here is saved or sent anywhere.</p>
+      </div>
+
+      <div id="ufmc-result" hidden>
+        <p class="ufmc-label">Daily target</p>
+        <p class="ufmc-kcal"><span id="ufmc-kcal">0</span><small>kcal</small></p>
+        <p class="ufmc-sub" id="ufmc-goalnote"></p>
+
+        <div class="ufmc-macro">
+          <div class="ufmc-macro-head"><span class="ufmc-macro-name">Protein</span><span class="ufmc-macro-val"><b id="ufmc-p">0</b>g<span id="ufmc-ppct"></span></span></div>
+          <div class="ufmc-bar"><i id="ufmc-pbar" style="background:#0AF2C2;width:0"></i></div>
+        </div>
+        <div class="ufmc-macro">
+          <div class="ufmc-macro-head"><span class="ufmc-macro-name">Carbs</span><span class="ufmc-macro-val"><b id="ufmc-c">0</b>g<span id="ufmc-cpct"></span></span></div>
+          <div class="ufmc-bar"><i id="ufmc-cbar" style="background:#67BEA7;width:0"></i></div>
+        </div>
+        <div class="ufmc-macro">
+          <div class="ufmc-macro-head"><span class="ufmc-macro-name">Fat</span><span class="ufmc-macro-val"><b id="ufmc-f">0</b>g<span id="ufmc-fpct"></span></span></div>
+          <div class="ufmc-bar"><i id="ufmc-fbar" style="background:#EFEFEE;width:0"></i></div>
+        </div>
+
+        <div class="ufmc-note">
+          <p><strong>This is a starting point.</strong> Estimates like this are off for plenty of people. Track for two to three weeks, watch how training feels, and adjust with a coach.</p>
+          <p>Not medical advice. If you're pregnant, managing a health condition, or have a history with restrictive eating, talk to your doctor or a registered dietitian first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* =========================================================
+     COACH REVIEW: every number in CONFIG is a placeholder
+     based on common sports-nutrition ranges. Unified coaching
+     staff (ideally with a registered dietitian) should confirm
+     or change these before the page goes live.
+     ========================================================= */
+  var CONFIG = {
+    // Daily-life multiplier applied to BMR (training is added separately below)
+    activity: [
+      { label: 'Mostly seated (desk job)', value: 1.2 },
+      { label: 'Light movement (some walking)', value: 1.3 },
+      { label: 'On your feet most of the day', value: 1.4 },
+      { label: 'Physical job (labor, hospitality, coaching)', value: 1.5 }
+    ],
+    // Training types. met = [MET at intensity 1, MET at intensity 10], interpolated.
+    // MET ranges are placeholders based on the Compendium of Physical Activities.
+    // proteinPerKg and fatPct set the macro split for that type.
+    types: {
+      none:      { label: 'No structured training', note: '' },
+      endurance: { label: 'Endurance (marathon, triathlon, long-distance)', met: [5, 14], proteinPerKg: 1.6, fatPct: 0.22,
+                   note: 'Aerobic base work. Higher carbs to fuel long sessions.' },
+      glycolytic:{ label: 'CrossFit / HIIT (glycolytic, muscle endurance)', met: [4.5, 12], proteinPerKg: 1.8, fatPct: 0.25,
+                   note: 'Mixed intervals and high-rep work. Moderate-high carbs.' },
+      strength:  { label: 'Bodybuilding / strength', met: [3, 6], proteinPerKg: 2.0, fatPct: 0.25,
+                   note: 'Lower energy cost per session. Higher protein.' }
+    },
+    intensityNotes: ['', 'Very easy, can chat comfortably', 'Easy', 'Easy to moderate', 'Moderate', 'Steady effort, can speak in short sentences', 'Hard, breathing heavily', 'Very hard', 'Near max for long stretches', 'Max effort in intervals', 'All-out the whole session'],
+    trainingBurnFactor: 0.85, // conservative: MET tables tend to overestimate
+    goals: {
+      fuel:   { label: 'Fuel training and maintain', adjust: 0.00, note: 'Built to support training at your current weight.' },
+      build:  { label: 'Build strength and muscle',  adjust: 0.10, note: 'A small surplus to support strength gains.' },
+      reduce: { label: 'Reduce weight gradually',    adjust: -0.15, note: 'A moderate deficit. Slow and steady keeps training quality high.' }
+    },
+    proteinPerKg: 1.8,      // ~0.8 g per lb bodyweight
+    fatPct: 0.25,           // share of calories from fat
+    fatMinPerKg: 0.6,       // fat never drops below this
+    calorieFloor: { female: 1400, male: 1700 } // targets never go below this or BMR, whichever is higher
+  };
+
+  var root = document.getElementById('macro-calculator');
+  if (!root) return;
+  var $ = function (id) { return root.querySelector('#' + id); };
+  var units = 'imperial';
+
+  // populate selects
+  CONFIG.activity.forEach(function (a, i) {
+    var o = document.createElement('option'); o.value = a.value; o.textContent = a.label;
+    if (i === 1) o.selected = true; $('ufmc-activity').appendChild(o);
+  });
+  Object.keys(CONFIG.types).forEach(function (k) {
+    var o = document.createElement('option'); o.value = k; o.textContent = CONFIG.types[k].label;
+    if (k === 'glycolytic') o.selected = true; $('ufmc-type').appendChild(o);
+  });
+  function syncTrain() {
+    var t = $('ufmc-type').value;
+    $('ufmc-typenote').textContent = CONFIG.types[t].note;
+    root.querySelector('[data-train]').hidden = (t === 'none');
+    var v = parseInt($('ufmc-intensity').value, 10);
+    $('ufmc-intval').textContent = v;
+    $('ufmc-intnote').textContent = CONFIG.intensityNotes[v];
+  }
+  $('ufmc-type').addEventListener('change', syncTrain);
+  $('ufmc-intensity').addEventListener('input', syncTrain);
+  syncTrain();
+  Object.keys(CONFIG.goals).forEach(function (k) {
+    var o = document.createElement('option'); o.value = k; o.textContent = CONFIG.goals[k].label;
+    $('ufmc-goal').appendChild(o);
+  });
+
+  // unit toggle
+  root.querySelectorAll('[data-units]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      units = btn.getAttribute('data-units');
+      root.querySelectorAll('[data-units]').forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+      root.querySelectorAll('[data-show]').forEach(function (el) { el.hidden = el.getAttribute('data-show') !== units; });
+      $('ufmc-wunit').textContent = units === 'imperial' ? 'lb' : 'kg';
+      $('ufmc-weight').placeholder = units === 'imperial' ? '160' : '73';
+    });
+  });
+
+  function num(id) { var v = parseFloat($(id).value); return isNaN(v) ? null : v; }
+
+  function calculate(input) {
+    var bmr = 10 * input.kg + 6.25 * input.cm - 5 * input.age + (input.sex === 'male' ? 5 : -161);
+    var type = CONFIG.types[input.type], trainDaily = 0;
+    if (type.met) {
+      var met = type.met[0] + (type.met[1] - type.met[0]) * (input.intensity - 1) / 9;
+      var perSession = (met - 1) * input.kg * (input.minutes / 60) * CONFIG.trainingBurnFactor; // net of resting
+      trainDaily = perSession * input.sessions / 7;
+    }
+    var tdee = bmr * input.activity + trainDaily;
+    var goal = CONFIG.goals[input.goal];
+    var floor = Math.max(bmr, CONFIG.calorieFloor[input.sex]);
+    var kcal = Math.max(tdee * (1 + goal.adjust), floor);
+    kcal = Math.round(kcal / 10) * 10;
+
+    var ppk = type.proteinPerKg || CONFIG.proteinPerKg, fpct = type.fatPct || CONFIG.fatPct;
+    var protein = Math.round(input.kg * ppk);
+    var fat = Math.round(Math.max((kcal * fpct) / 9, input.kg * CONFIG.fatMinPerKg));
+    var carbs = Math.max(0, Math.round((kcal - protein * 4 - fat * 9) / 4));
+    return { kcal: kcal, protein: protein, fat: fat, carbs: carbs, note: goal.note + (type.note ? ' ' + type.note : ''), training: Math.round(trainDaily / 10) * 10 };
+  }
+
+  function show(r) {
+    var pk = r.protein * 4, ck = r.carbs * 4, fk = r.fat * 9, total = pk + ck + fk;
+    $('ufmc-kcal').textContent = r.kcal.toLocaleString();
+    $('ufmc-goalnote').textContent = r.note;
+    [['p', r.protein, pk], ['c', r.carbs, ck], ['f', r.fat, fk]].forEach(function (m) {
+      var pct = Math.round((m[2] / total) * 100);
+      $('ufmc-' + m[0]).textContent = m[1];
+      $('ufmc-' + m[0] + 'pct').textContent = pct + '%';
+      $('ufmc-' + m[0] + 'bar').style.width = pct + '%';
+    });
+    $('ufmc-empty').hidden = true;
+    $('ufmc-result').hidden = false;
+    if (window.innerWidth <= 760) {
+      $('ufmc-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  $('ufmc-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = $('ufmc-error'); err.textContent = '';
+    var age = num('ufmc-age'), w = num('ufmc-weight'), cm;
+    if (units === 'imperial') {
+      var ft = num('ufmc-ft'), inch = num('ufmc-in') || 0;
+      cm = ft ? (ft * 12 + inch) * 2.54 : null;
+    } else { cm = num('ufmc-cm'); }
+    var kg = w ? (units === 'imperial' ? w * 0.453592 : w) : null;
+
+    if (!age || age < 16 || age > 90) { err.textContent = 'Enter an age between 16 and 90.'; return; }
+    if (!cm || cm < 120 || cm > 230) { err.textContent = 'Check your height.'; return; }
+    if (!kg || kg < 35 || kg > 250) { err.textContent = 'Check your weight.'; return; }
+
+    var typ = $('ufmc-type').value, sess = num('ufmc-sessions'), mins = num('ufmc-minutes');
+    if (typ !== 'none') {
+      if (!sess || sess < 1 || sess > 14) { err.textContent = 'Enter 1 to 14 sessions per week.'; return; }
+      if (!mins || mins < 15 || mins > 360) { err.textContent = 'Enter a session length between 15 and 360 minutes.'; return; }
+    }
+    show(calculate({
+      type: typ, sessions: sess, minutes: mins, intensity: parseInt($('ufmc-intensity').value, 10),
+      sex: $('ufmc-sex').value, age: age, cm: cm, kg: kg,
+      activity: parseFloat($('ufmc-activity').value), goal: $('ufmc-goal').value
+    }));
+  });
+})();
+</script>
+</section>
+</main>
+<div class="wrap"><p class="mc-note">A coach tool from the Unified gym, shown here as a working sample. Nothing entered is saved or sent. Targets are estimates for a coach to review and adjust.</p></div>
+<footer><div class="wrap">© 2026 Caleb Barretto. Claremont, California.</div></footer>
+</body>
+</html>
