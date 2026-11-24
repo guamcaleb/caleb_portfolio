@@ -440,3 +440,9 @@ footer{background:var(--black);color:var(--grey);padding-top:22px;padding-bottom
 .wip{display:inline-block;font-family:var(--cond);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;line-height:1;background:var(--spark);color:var(--black);padding:6px 14px 6px 10px;margin-left:6px;vertical-align:middle;clip-path:polygon(0 0,100% 0,calc(100% - 7px) 100%,0 100%);}
 .tools.coach{grid-template-columns:1fr;gap:26px;}
 .tools.coach .btn{margin-top:16px;font-size:18px;padding:14px 28px;}
+
+.score-note{margin:28px 0 0;max-width:46em;font-size:17px;line-height:1.5;color:#3A3A3A;}
+
+.snap{margin:16px 0 0;max-width:520px;}
+.snap img{display:block;width:100%;height:auto;border:1px solid rgba(242,242,238,.18);border-top:3px solid var(--spark);}
+.snap figcaption{margin-top:8px;font-size:14px;line-height:1.4;color:#B8B8B2;}
