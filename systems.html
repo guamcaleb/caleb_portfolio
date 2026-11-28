@@ -80,6 +80,32 @@
       <li><span class="n">4</span><div><h3>One clear offer</h3><p>Book a Test Drive, ask a question, or not right now.</p></div></li>
       <li><span class="n">5</span><div><h3>Hand-off and a nudge</h3><p>The lead is tagged, a coach is notified and a phone number is captured. A day later, anyone who has not booked gets a short reminder.</p></div></li>
     </ol>
+    <div class="try" id="try">
+      <div class="try-head">
+        <p class="tag">Try it</p>
+        <h3>Tap through the DM</h3>
+        <p>A simplified version of the live flow. Pick an answer and watch what the system does behind the scenes.</p>
+      </div>
+      <div class="try-grid">
+        <div class="phone" role="group" aria-label="Example direct message conversation">
+          <div class="phone-bar"><b>Unified Fit</b><span>Example</span></div>
+          <div class="thread" id="thread" aria-live="polite"></div>
+          <div class="replies" id="replies"></div>
+        </div>
+        <div class="behind">
+          <h4>Behind the scenes</h4>
+          <ul id="log" aria-live="polite"></ul>
+          <button class="again" id="again" type="button" hidden>Start over</button>
+        </div>
+      </div>
+      <p class="try-cap">Illustration. The wording is simplified. The live flow runs in ManyChat.</p>
+    </div>
+    <a class="case" href="select-care-funnel.html" data-goatcounter-click="funnel-open">
+      <span class="case-t">Case study</span>
+      <span class="case-h">From Instagram comment to enrolled member</span>
+      <span class="case-p">The same pattern, run end to end for the Select Care campaign: the posts, the live ManyChat flow, the enrollment page, the back office, and what I would automate next.</span>
+      <span class="case-go">Open the case study</span>
+    </a>
   </section>
 
   <section class="block" id="season">
@@ -286,6 +312,80 @@
 <script>
 (function(){
   "use strict";
+
+  /* ---------- DM tap-through (illustration) ---------- */
+  (function(){
+    var thread=document.getElementById("thread"),replies=document.getElementById("replies"),
+        log=document.getElementById("log"),again=document.getElementById("again");
+    if(!thread||!replies||!log||!again){return;}
+    var calm=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var GOALS=[
+      {k:"strength",t:"Get stronger",r:"BRIK is Unified's group program. It puts strength first and builds conditioning on top of it. The free Strength Primer explains how our coaches think about it."},
+      {k:"engine",t:"Build my engine",r:"BRIK is Unified's group program for hybrid training, so strength and conditioning share the same week."},
+      {k:"hyrox",t:"Train for HYROX",r:"BRIK suits HYROX preparation. The Saturday Tester sessions are built around race prep."},
+      {k:"all",t:"All of it",r:"BRIK is Unified's group program for hybrid training. It covers strength, conditioning and HYROX style preparation."}
+    ];
+    var LEVELS=[
+      {t:"Just starting",r:"New to this? Start with a Test Drive class and a coach will place you."},
+      {t:"Already training",r:"If you already train, a coach will show you where you fit."},
+      {t:"Training for an event",r:"If you have an event coming up, tell the coach the date."}
+    ];
+    var OFFERS=[
+      {t:"Book a Test Drive",r:"Great. Pick a time on the booking page and a coach will confirm.",l:["Coach notified","Phone number captured","No reminder needed"]},
+      {t:"Ask a question",r:"Send it here and a coach will reply.",l:["Coach notified","Phone number captured"]},
+      {t:"Not right now",r:"No problem. The offer stays open if you change your mind.",l:["Phone number captured","Reminder queued for the next day"]}
+    ];
+    var goal=null,level=null,timer=null;
+    function say(who,text){
+      var b=document.createElement("p");b.className="bub "+who;b.textContent=text;thread.appendChild(b);
+      thread.scrollTop=thread.scrollHeight;
+    }
+    function note(text){
+      var li=document.createElement("li");li.textContent=text;log.appendChild(li);
+    }
+    function clearReplies(){replies.innerHTML="";}
+    function choices(list,onPick){
+      clearReplies();
+      list.forEach(function(o){
+        var b=document.createElement("button");b.type="button";b.textContent=o.t;
+        b.addEventListener("click",function(){onPick(o);});
+        replies.appendChild(b);
+      });
+      var f=replies.querySelector("button");if(f&&document.activeElement&&document.activeElement.closest&&document.activeElement.closest("#try")){f.focus({preventScroll:true});}
+    }
+    function bot(text,next){
+      clearReplies();
+      if(calm){say("bot",text);if(next){next();}return;}
+      var d=document.createElement("p");d.className="bub bot typing";d.setAttribute("aria-hidden","true");d.innerHTML="<i></i><i></i><i></i>";
+      thread.appendChild(d);thread.scrollTop=thread.scrollHeight;
+      timer=setTimeout(function(){thread.removeChild(d);say("bot",text);if(next){next();}},650);
+    }
+    function start(){
+      clearTimeout(timer);thread.innerHTML="";log.innerHTML="";clearReplies();again.hidden=true;goal=null;level=null;
+      say("me","BRIK");note("Keyword BRIK received");
+      bot("Thanks for asking about BRIK. What are you after?",function(){
+        choices(GOALS,function(g){
+          goal=g;say("me",g.t);note("Goal saved: "+g.t);
+          bot("Got it. Where are you in your training?",function(){
+            choices(LEVELS,function(l){
+              level=l;say("me",l.t);note("Training level saved: "+l.t);
+              bot(goal.r+" "+level.r,function(){
+                bot("What would you like to do next?",function(){
+                  choices(OFFERS,function(o){
+                    say("me",o.t);clearReplies();
+                    o.l.forEach(note);
+                    bot(o.r,function(){again.hidden=false;});
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+    again.addEventListener("click",start);
+    start();
+  })();
   function el(tag,attrs,text){var n=document.createElement(tag);if(attrs){for(var k in attrs){n.setAttribute(k,attrs[k]);}}if(text!=null)n.textContent=text;return n;}
   function ord(n){return n===1?"1st":n===2?"2nd":n===3?"3rd":n+"th";}
 
