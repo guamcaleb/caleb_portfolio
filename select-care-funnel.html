@@ -39,7 +39,16 @@
 .fx h2{font-size:clamp(34px,4.4vw,58px);line-height:1;}
 .fx-lede{max-width:46em;font-size:clamp(18px,1.5vw,21px);color:#D9D9D4;margin:22px 0 0;}
 .fx-built{margin:16px 0 0;font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);}
-.fx-mode{display:flex;gap:6px;margin-top:30px;flex-wrap:wrap;}
+.fx-mode{display:flex;gap:6px;margin-top:18px;flex-wrap:wrap;}
+.fx-results{margin-top:34px;background:var(--hot);color:var(--on-hot);padding:clamp(20px,3vw,32px) clamp(18px,3vw,34px);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);}
+.fx-rlabel{margin:0 0 16px;font:800 18px/1.2 var(--cond);letter-spacing:.08em;text-transform:uppercase;}
+.fx-rgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px clamp(16px,3vw,36px);}
+.fx-rgrid b{display:block;font:400 clamp(44px,5.4vw,72px)/1 var(--disp);}
+.fx-rgrid span{display:block;margin-top:8px;font-size:16px;line-height:1.35;}
+.fx-rnote{margin:18px 0 0;font-size:15px;opacity:.9;}
+.fx-sys{margin-top:clamp(40px,5vw,60px);font-size:clamp(28px,3.2vw,42px) !important;}
+@media(max-width:800px){.fx-rgrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
 .fx-mode button{font-family:var(--cond);font-weight:800;font-size:19px;text-transform:uppercase;letter-spacing:.06em;line-height:1;padding:15px 30px;min-height:50px;border:0;background:var(--iron);color:var(--grey);clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);}
 .fx-mode button:hover{color:var(--chalk);}
 .fx-mode button[aria-pressed=true]{background:var(--hot);color:var(--on-hot);}
@@ -196,7 +205,7 @@
  .fx-node small{font-size:11px;}
  .fx-node.hub{width:112px;}
  .fx-screen{height:540px;}
- .fx-flowhero{min-width:900px;}
+ .fx-flowhero{min-width:1100px;}
  .fx-film{grid-template-rows:auto;}
  .fx-slide.tall{grid-row:auto;}
  .fx-slide.wide{width:300px;}
@@ -230,13 +239,20 @@
     <h1>From Instagram comment to enrolled member</h1>
     <p class="fx-lede">I designed and built this funnel for Unified, the gym I own in Guam. A comment on a post starts a ManyChat conversation. The conversation sends people to an enrollment page on our site, and every submission lands with the team. Tap through the six steps to see what each tool does and where a person still has to step in.</p>
     <p class="fx-built">Built with ManyChat, Meta Pixel, Google Apps Script, Google Sheets and Glofox</p>
+    <div class="fx-results">
+      <p class="fx-rlabel">First two days live, November 25 to 27, 2026</p>
+      <div class="fx-rgrid">
+        <div><b>4</b><span>people started the DM from a comment, message or story reply</span></div>
+        <div><b>100%</b><span>answered both qualifying questions</span></div>
+        <div><b>3 of 4</b><span>tapped through to the enrollment page</span></div>
+        <div><b>Seconds</b><span>from comment to reply, with nobody on staff online</span></div>
+      </div>
+      <p class="fx-rnote">Early and small, and read straight from ManyChat. I update these as the campaign runs.</p>
+    </div>
+    <h2 class="fx-sys">How the system is wired</h2>
     <div class="fx-mode" role="group" aria-label="View">
       <button id="m-now" type="button" aria-pressed="true">Today</button>
       <button id="m-27" type="button" aria-pressed="false">2027 plan</button>
-    </div>
-    <div class="fx-counter">
-      <div class="a"><b id="c-auto">0</b><span>automated connections</span></div>
-      <div class="m"><b id="c-man">0</b><span>routine manual hand-offs</span></div>
     </div>
     <div class="fx-mapbox">
       <div class="fx-map" id="map"><svg id="wires" aria-hidden="true"></svg></div>
@@ -258,9 +274,9 @@
   <section class="fx-sec" id="real-flow">
     <p class="fx-tag">The real thing</p>
     <h2>Inside the live ManyChat flow</h2>
-    <p class="fx-lede">This is the automation called "SELECT Care Enrollment," captured from the ManyChat builder on November 27, 2026. Every message, branch, delay and tag below is the real one. The counters read zero in these captures, so read them as the build, not as results. Swipe through the pieces.</p>
-    <div class="fx-pan" tabindex="0" role="group" aria-label="The full flow, scroll sideways on a small screen"><img class="fx-flowhero" src="images/funnel/panorama.jpg" width="1100" height="555" alt="The full SELECT Care Enrollment automation in the ManyChat flow builder, showing the plan branch, the experience branch, the content cards and the delay logic" loading="lazy"></div>
-    <p class="fx-small">Live in the Unified ManyChat account, captured November 27, 2026.</p>
+    <p class="fx-lede">This is the automation called "SELECT Care Enrollment" as it runs in ManyChat. Every message, branch, delay and tag below is the real one, and the counts on each step are live numbers from the first two days. Swipe through the pieces underneath.</p>
+    <div class="fx-pan" tabindex="0" role="group" aria-label="The full flow, scroll sideways on a small screen"><img class="fx-flowhero" src="images/funnel/panorama-live.jpg" width="1580" height="540" alt="The full SELECT Care Enrollment automation in the ManyChat flow builder, showing the plan branch, the experience branch, the content cards and the delay logic" loading="lazy"></div>
+    <p class="fx-small">Live in the Unified ManyChat account, captured November 27, 2026. The close-ups below were taken at launch, before the first sends, so their counters read zero.</p>
     <div class="fx-flegend">
       <span><i class="branch"></i>Branch logic: routes the conversation</span>
       <span><i class="content"></i>Content lever: a photo or PDF I can swap any time</span>
@@ -403,9 +419,6 @@ function draw(){
   var on=s.edges.indexOf(key(e))>-1;
   return '<path class="fx-edge '+e.t+(on?' on':' dimmed')+'" d="'+d+'"/>';}).join('');
  N.forEach(function(n){var el=$('n-'+n.id),on=s.nodes.indexOf(n.id)>-1;el.classList.toggle('on',on);el.classList.toggle('off',!on);});
- $('c-auto').textContent=E.filter(live).filter(function(e){return e.t==='auto';}).length;
- var man=0;S.forEach(function(s2){if(mode==='now')s2.now.forEach(function(x){if(x[0]==='m')man++;});});
- $('c-man').textContent=man;
 }
 if(window.ResizeObserver){new ResizeObserver(place).observe(map);}else{window.addEventListener('resize',place);}
 
